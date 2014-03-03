@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html> 
+
+  <head> 
+    <title>ROAmber demo</title> 
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+    <meta name="author" content="ObjectProfile.com" /> 
+    <script src="projects/roamber/js/raphael-min.js" charset="utf-8"></script>
+    <link href="js/lib/bootstrap/css/bootstrap.css" rel="stylesheet" >
+  </head> 
+
+  <body>
+    <script type='text/javascript' src='js/amber.js'></script>  
+    <script type='text/javascript'> 
+      loadAmber({
+        files: [
+          'AATrachel.js',
+          'Roassal-Amber-Extensions.js',
+          'Roassal2-Core.js',
+          'Roassal2-Example.js',
+/*          'RoassalD3.js',
+          'ARoassal.js', 
+          'ARoassal-Test.js',
+          'ARoassal-Demo.js',
+          'ARoassal-Interaction.js',
+          'ARoassal-Interaction-Test.js',
+          'ARoassal-AttachPoint.js', 
+          'ARoassal-AttachPoint-Test.js', 
+          'ARoassal-Event.js',
+          'ARoassal-Raphaeljs.js', 
+          'ARoassal-Layout.js', 
+          'ARoassal-Layout-Test.js',
+          'Roassal-Normalizers.js',
+
+	        'Roassal-Builder-Punchcard.js',
+          'RoassalExtras-Geo.js',
+          'RoassalExtras-Geo-Tests.js',
+          'RoassalExtras-Geo-Tests.js',
+          'RoassalExtras-Geo-Tests.js',    
+*/
+          /* --- Graph-ET ---*/
+          /*'Graph-ET-Core.js',
+          'Graph-ET-Core-Tests.js',
+          'Graph-ET-Axis.js',
+          'Graph-ET-Examples.js',
+          'Graph-ET-Util.js',
+          'Graph-ET-Util-Tests.js',*/
+          ],
+        prefix: 'projects/roamber/js',
+        ready: function() {
+          // smalltalk.Browser._open();
+          smalltalk.RODemo._init();
+        }}) 
+      window.onbeforeunload = function() {
+          return 'Do you want to close Amber? All uncommitted changes will be lost.';
+        };
+    </script> 
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"><img src="roassal-logo.png" /></span>
+          </button>
+          
+          <a class="brand" href="#"><img src="images/roassal-logo.png" width="20px"/>&nbsp;&nbsp;Roassal 2</a>
+          <div class="nav-collapse collapse">
+>            <div class="pull-right">              
+                <ul class="nav">
+    
+                
+                  <li class="active"><a href="#" onClick="smalltalk.Browser._open()">Class Browser</a></li>
+
+                </ul>
+          
+          
+              
+           </div> 
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+      <div class="row-fluid">&nbsp;</div>
+      
+      <div class="row-fluid">&nbsp;</div>
+
+
+
+    <div class="row-fluid">&nbsp;</div>
+     <div class="row-fluid">
+        <div class="span6" style="padding-left:12px">
+          <div id="roassal-canvas" style="width:640x;height:480px;overflow:scroll;">
+          </div>
+        </div>
+      </div>
+
+
+  
+  <script src="js/lib/bootstrap/js/bootstrap.js"></script>
+  </body> 
+</html> 
