@@ -176,6 +176,11 @@ r: rVal g: gVal b: bVal a: aVal
 	self setRed: rVal green: gVal blue: bVal alpha: aVal
 !
 
+r: rVal g: gVal b: bVal alpha: aVal
+	" values are from 0.0 .. 1.0 "
+	self r: rVal g: gVal b: bVal a: aVal
+!
+
 setHue: hue saturation: saturation brightness: brightness 
 	"Initialize this color to the given hue, saturation, and brightness. See the comment in the instance creation method for details."
 	| s v hf i f p q t |
@@ -281,6 +286,10 @@ r: rVal g: gVal b: bVal
 !
 
 r: rVal g: gVal b: bVal a: aVal
+	^ self new r: rVal g: gVal b: bVal a: aVal.
+!
+
+r: rVal g: gVal b: bVal alpha: aVal
 	^ self new r: rVal g: gVal b: bVal a: aVal.
 !
 
@@ -1485,6 +1494,10 @@ withAllSuperclasses
 
 !BlockClosure methodsFor: '*Roassal-Amber-Extensions'!
 
+assert
+	self value ifFalse: [AssertionFailure signal: 'Assertion Failed']
+!
+
 fork
 	^self value
 !
@@ -1798,6 +1811,10 @@ roValue: anObject
 	^ anObject perform: self
 !
 
+rtValue: anObject 
+	^ anObject perform: self
+!
+
 value: anObject 
 	^ anObject perform: self
 ! !
@@ -1813,6 +1830,10 @@ with: aUTFCharCode
 
 roValue: anObject
 	^anObject perform: self
+!
+
+rtValue: anObject 
+	^ anObject perform: self
 !
 
 value: anObject

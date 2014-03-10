@@ -91,7 +91,7 @@ body.amberBody {
 
 #amber, #amber button, #amber input, #amber select {
        font-family: Lucida Grande, Tahoma, sans-serif;
-       font-size: 12px;
+       font-size: 11px;
 }
 
 #amber #logo {
@@ -251,7 +251,7 @@ body.amberBody {
 .amberTool .CodeMirror {
     border: 0 none;
     font-family:  "DejaVu Sans", Helvetica, sans;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.3em;
     height: 100%;
     background: white;

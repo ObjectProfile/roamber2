@@ -337,6 +337,22 @@ smalltalk.Color);
 
 smalltalk.addMethod(
 smalltalk.method({
+selector: "r:g:b:alpha:",
+category: 'private',
+fn: function (rVal,gVal,bVal,aVal){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+self._r_g_b_a_(rVal,gVal,bVal,aVal);
+return self}, function($ctx1) {$ctx1.fill(self,"r:g:b:alpha:",{rVal:rVal,gVal:gVal,bVal:bVal,aVal:aVal},smalltalk.Color)})},
+args: ["rVal", "gVal", "bVal", "aVal"],
+source: "r: rVal g: gVal b: bVal alpha: aVal\x0a\x09\x22 values are from 0.0 .. 1.0 \x22\x0a\x09self r: rVal g: gVal b: bVal a: aVal",
+messageSends: ["r:g:b:a:"],
+referencedClasses: []
+}),
+smalltalk.Color);
+
+smalltalk.addMethod(
+smalltalk.method({
 selector: "red",
 category: 'accessing',
 fn: function () {
@@ -748,6 +764,24 @@ return $1;
 }, function($ctx1) {$ctx1.fill(self,"r:g:b:a:",{rVal:rVal,gVal:gVal,bVal:bVal,aVal:aVal},smalltalk.Color.klass)});},
 args: ["rVal", "gVal", "bVal", "aVal"],
 source: "r: rVal g: gVal b: bVal a: aVal\x0a\x09^ self new r: rVal g: gVal b: bVal a: aVal.",
+messageSends: ["r:g:b:a:", "new"],
+referencedClasses: []
+}),
+smalltalk.Color.klass);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "r:g:b:alpha:",
+category: 'not yet classified',
+fn: function (rVal,gVal,bVal,aVal){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(self._new())._r_g_b_a_(rVal,gVal,bVal,aVal);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"r:g:b:alpha:",{rVal:rVal,gVal:gVal,bVal:bVal,aVal:aVal},smalltalk.Color.klass)})},
+args: ["rVal", "gVal", "bVal", "aVal"],
+source: "r: rVal g: gVal b: bVal alpha: aVal\x0a\x09^ self new r: rVal g: gVal b: bVal a: aVal.",
 messageSends: ["r:g:b:a:", "new"],
 referencedClasses: []
 }),
@@ -3977,6 +4011,27 @@ smalltalk.Behavior);
 
 smalltalk.addMethod(
 smalltalk.method({
+selector: "assert",
+category: '*Roassal-Amber-Extensions',
+fn: function (){
+var self=this;
+function $AssertionFailure(){return smalltalk.AssertionFailure||(typeof AssertionFailure=="undefined"?nil:AssertionFailure)}
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self._value();
+if(! smalltalk.assert($1)){
+_st($AssertionFailure())._signal_("Assertion Failed");
+};
+return self}, function($ctx1) {$ctx1.fill(self,"assert",{},smalltalk.BlockClosure)})},
+args: [],
+source: "assert\x0a\x09self value ifFalse: [AssertionFailure signal: 'Assertion Failed']",
+messageSends: ["ifFalse:", "signal:", "value"],
+referencedClasses: ["AssertionFailure"]
+}),
+smalltalk.BlockClosure);
+
+smalltalk.addMethod(
+smalltalk.method({
 selector: "fork",
 category: '*Roassal-Amber-Extensions',
 fn: function () {
@@ -4929,6 +4984,24 @@ smalltalk.String);
 
 smalltalk.addMethod(
 smalltalk.method({
+selector: "rtValue:",
+category: '*Roassal-Amber-Extensions',
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(anObject)._perform_(self);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rtValue:",{anObject:anObject},smalltalk.String)})},
+args: ["anObject"],
+source: "rtValue: anObject \x0a\x09^ anObject perform: self",
+messageSends: ["perform:"],
+referencedClasses: []
+}),
+smalltalk.String);
+
+smalltalk.addMethod(
+smalltalk.method({
 selector: "value:",
 category: '*Roassal-Amber-Extensions',
 fn: function (anObject) {
@@ -4976,6 +5049,24 @@ return $1;
 }, function($ctx1) {$ctx1.fill(self,"roValue:",{anObject:anObject},smalltalk.Symbol)});},
 args: ["anObject"],
 source: "roValue: anObject\x0a\x09^anObject perform: self",
+messageSends: ["perform:"],
+referencedClasses: []
+}),
+smalltalk.Symbol);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "rtValue:",
+category: '*Roassal-Amber-Extensions',
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(anObject)._perform_(self);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rtValue:",{anObject:anObject},smalltalk.Symbol)})},
+args: ["anObject"],
+source: "rtValue: anObject \x0a\x09^ anObject perform: self",
 messageSends: ["perform:"],
 referencedClasses: []
 }),

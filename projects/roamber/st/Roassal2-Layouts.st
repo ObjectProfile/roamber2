@@ -1,4 +1,205 @@
 Smalltalk current createPackage: 'Roassal2-Layouts'!
+RTObject subclass: #RTCell
+	instanceVariableNames: 'elements columns element number rowHeights columnWidths'
+	package: 'Roassal2-Layouts'!
+!RTCell commentStamp!
+A RTCell is xxxxxxxxx.
+
+Instance Variables
+	columnWidths:		<Object>
+	columns:		<Object>
+	element:		<Object>
+	elements:		<Object>
+	number:		<Object>
+	rowHeights:		<Object>
+
+columnWidths
+	- xxxxx
+
+columns
+	- xxxxx
+
+element
+	- xxxxx
+
+elements
+	- xxxxx
+
+number
+	- xxxxx
+
+rowHeights
+	- xxxxx!
+
+!RTCell methodsFor: 'accessing'!
+
+column
+
+	^((number - 1) rem: columns) + 1
+!
+
+columnWidthAt: index
+	"private"
+
+	^ columnWidths at: index
+!
+
+columns
+	^ columns
+!
+
+columns: anObject
+	columns := anObject
+!
+
+computeColumnWidths
+
+	columnWidths := Array new: elements columnCount.
+	1 to: elements columnCount do: [ :columnIndex |
+		columnWidths at: columnIndex put: ((elements atColumn: columnIndex) select: #notNil thenCollect: #width) max
+	 ].
+!
+
+computeRowHeights
+
+	rowHeights := Array new: elements rowCount.
+	1 to: elements rowCount do: [ :rowIndex |
+		rowHeights at: rowIndex put: ((elements atRow: rowIndex) select: #notNil thenCollect: #height) max
+	 ].
+!
+
+element
+	^ element
+!
+
+element: anObject
+	element := anObject
+!
+
+elements: aCollection 
+
+	| rows  col |
+	rows := (aCollection size / columns) ceiling rounded.
+	col := Array new: rows * columns.
+	1 to: aCollection size do: [ :i | col at: i put: (aCollection at: i)].
+	elements := RTCellMatrix 
+						rows: rows
+						columns: columns 
+						contents: col.
+	self computeColumnWidths.
+	self computeRowHeights.
+!
+
+extent
+
+	^ self width @ self height
+!
+
+height
+
+	^ self rowHeightAt: self row
+!
+
+number
+	^ number
+!
+
+number: anObject
+	number := anObject
+!
+
+row
+
+	^((number - 1) quo: columns) + 1
+!
+
+rowHeightAt: index
+	"private"
+
+	^ rowHeights at: index
+!
+
+width
+
+	^ self columnWidthAt: self column
+! !
+
+!RTCell class methodsFor: 'public'!
+
+elements: aCollection columns: anInteger 
+	
+	^ self new columns: anInteger; elements: aCollection; yourself
+! !
+
+RTObject subclass: #RTCellMatrix
+	instanceVariableNames: 'nrows ncols contents'
+	package: 'Roassal2-Layouts'!
+!RTCellMatrix commentStamp!
+A ROCellMatrix is xxxxxxxxx.
+
+Instance Variables
+	contents:		<Object>
+	ncols:		<Object>
+	nrows:		<Object>
+
+contents
+	- xxxxx
+
+ncols
+	- xxxxx
+
+nrows
+	- xxxxx!
+
+!RTCellMatrix methodsFor: 'accessing'!
+
+columnCount
+	^ ncols
+!
+
+rowCount
+	^ nrows
+! !
+
+!RTCellMatrix methodsFor: 'accessing rows/columns'!
+
+atColumn: column
+	| p |
+	p := (self indexForRow: 1 andColumn: column) - ncols.
+	^ (1 to: nrows) collect: [ :row | contents at: (p := p+ncols) ]
+!
+
+atRow: row
+	(row between: 1 and: nrows)
+		ifFalse: [ self error: '1st subscript out of range' ].
+	^ contents copyFrom: (row - 1) * ncols + 1 to: row * ncols
+! !
+
+!RTCellMatrix methodsFor: 'private'!
+
+indexForRow: row andColumn: column
+	(row between: 1 and: nrows)
+		ifFalse: [self error: '1st subscript out of range'].
+	(column between: 1 and: ncols)
+		ifFalse: [self error: '2nd subscript out of range'].
+	^ (row - 1) * ncols + column
+!
+
+rows: rows columns: columns contents: anArray
+	(((rows isInteger and: [rows >= 0]) and: 
+		[columns isInteger and: [columns >= 0]]) and:
+			[ rows * columns = anArray size ]) ifFalse: [ self error: 'Wrong parameters' ].
+	nrows := rows.
+	ncols := columns.
+	contents := anArray
+! !
+
+!RTCellMatrix class methodsFor: 'as yet unclassified'!
+
+rows: rows columns: columns contents: contents
+	^self new rows: rows columns: columns contents: contents
+! !
+
 RTObject subclass: #RTLayout
 	instanceVariableNames: 'affectedNodes translator eventHandler currentIteraction maxInterations iterationsToSendEvent'
 	package: 'Roassal2-Layouts'!

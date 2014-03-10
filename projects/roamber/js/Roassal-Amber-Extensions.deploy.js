@@ -257,6 +257,17 @@ smalltalk.Color);
 
 smalltalk.addMethod(
 smalltalk.method({
+selector: "r:g:b:alpha:",
+fn: function (rVal,gVal,bVal,aVal){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+self._r_g_b_a_(rVal,gVal,bVal,aVal);
+return self}, function($ctx1) {$ctx1.fill(self,"r:g:b:alpha:",{rVal:rVal,gVal:gVal,bVal:bVal,aVal:aVal},smalltalk.Color)})},
+messageSends: ["r:g:b:a:"]}),
+smalltalk.Color);
+
+smalltalk.addMethod(
+smalltalk.method({
 selector: "red",
 fn: function () {
 var self=this;
@@ -585,6 +596,19 @@ var $1;
 $1=_st(self._new())._r_g_b_a_(rVal,gVal,bVal,aVal);
 return $1;
 }, function($ctx1) {$ctx1.fill(self,"r:g:b:a:",{rVal:rVal,gVal:gVal,bVal:bVal,aVal:aVal},smalltalk.Color.klass)});},
+messageSends: ["r:g:b:a:", "new"]}),
+smalltalk.Color.klass);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "r:g:b:alpha:",
+fn: function (rVal,gVal,bVal,aVal){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(self._new())._r_g_b_a_(rVal,gVal,bVal,aVal);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"r:g:b:alpha:",{rVal:rVal,gVal:gVal,bVal:bVal,aVal:aVal},smalltalk.Color.klass)})},
 messageSends: ["r:g:b:a:", "new"]}),
 smalltalk.Color.klass);
 
@@ -3116,6 +3140,22 @@ smalltalk.Behavior);
 
 smalltalk.addMethod(
 smalltalk.method({
+selector: "assert",
+fn: function (){
+var self=this;
+function $AssertionFailure(){return smalltalk.AssertionFailure||(typeof AssertionFailure=="undefined"?nil:AssertionFailure)}
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self._value();
+if(! smalltalk.assert($1)){
+_st($AssertionFailure())._signal_("Assertion Failed");
+};
+return self}, function($ctx1) {$ctx1.fill(self,"assert",{},smalltalk.BlockClosure)})},
+messageSends: ["ifFalse:", "signal:", "value"]}),
+smalltalk.BlockClosure);
+
+smalltalk.addMethod(
+smalltalk.method({
 selector: "fork",
 fn: function () {
 var self=this;
@@ -3853,6 +3893,19 @@ smalltalk.String);
 
 smalltalk.addMethod(
 smalltalk.method({
+selector: "rtValue:",
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(anObject)._perform_(self);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rtValue:",{anObject:anObject},smalltalk.String)})},
+messageSends: ["perform:"]}),
+smalltalk.String);
+
+smalltalk.addMethod(
+smalltalk.method({
 selector: "value:",
 fn: function (anObject) {
 var self=this;
@@ -3887,6 +3940,19 @@ var $1;
 $1=_st(anObject)._perform_(self);
 return $1;
 }, function($ctx1) {$ctx1.fill(self,"roValue:",{anObject:anObject},smalltalk.Symbol)});},
+messageSends: ["perform:"]}),
+smalltalk.Symbol);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "rtValue:",
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(anObject)._perform_(self);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rtValue:",{anObject:anObject},smalltalk.Symbol)})},
 messageSends: ["perform:"]}),
 smalltalk.Symbol);
 

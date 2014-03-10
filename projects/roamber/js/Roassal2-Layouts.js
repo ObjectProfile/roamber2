@@ -1,4 +1,492 @@
 smalltalk.addPackage('Roassal2-Layouts');
+smalltalk.addClass('RTCell', smalltalk.RTObject, ['elements', 'columns', 'element', 'number', 'rowHeights', 'columnWidths'], 'Roassal2-Layouts');
+smalltalk.RTCell.comment="A RTCell is xxxxxxxxx.\x0a\x0aInstance Variables\x0a\x09columnWidths:\x09\x09<Object>\x0a\x09columns:\x09\x09<Object>\x0a\x09element:\x09\x09<Object>\x0a\x09elements:\x09\x09<Object>\x0a\x09number:\x09\x09<Object>\x0a\x09rowHeights:\x09\x09<Object>\x0a\x0acolumnWidths\x0a\x09- xxxxx\x0a\x0acolumns\x0a\x09- xxxxx\x0a\x0aelement\x0a\x09- xxxxx\x0a\x0aelements\x0a\x09- xxxxx\x0a\x0anumber\x0a\x09- xxxxx\x0a\x0arowHeights\x0a\x09- xxxxx";
+smalltalk.addMethod(
+smalltalk.method({
+selector: "column",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(_st(_st(self["@number"]).__minus((1)))._rem_(self["@columns"])).__plus((1));
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"column",{},smalltalk.RTCell)})},
+args: [],
+source: "column\x0a\x0a\x09^((number - 1) rem: columns) + 1",
+messageSends: ["+", "rem:", "-"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "columnWidthAt:",
+category: 'accessing',
+fn: function (index){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(self["@columnWidths"])._at_(index);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"columnWidthAt:",{index:index},smalltalk.RTCell)})},
+args: ["index"],
+source: "columnWidthAt: index\x0a\x09\x22private\x22\x0a\x0a\x09^ columnWidths at: index",
+messageSends: ["at:"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "columns",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self["@columns"];
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"columns",{},smalltalk.RTCell)})},
+args: [],
+source: "columns\x0a\x09^ columns",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "columns:",
+category: 'accessing',
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+self["@columns"]=anObject;
+return self}, function($ctx1) {$ctx1.fill(self,"columns:",{anObject:anObject},smalltalk.RTCell)})},
+args: ["anObject"],
+source: "columns: anObject\x0a\x09columns := anObject",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "computeColumnWidths",
+category: 'accessing',
+fn: function (){
+var self=this;
+function $Array(){return smalltalk.Array||(typeof Array=="undefined"?nil:Array)}
+return smalltalk.withContext(function($ctx1) { 
+self["@columnWidths"]=_st($Array())._new_(_st(self["@elements"])._columnCount());
+(1)._to_do_(_st(self["@elements"])._columnCount(),(function(columnIndex){
+return smalltalk.withContext(function($ctx2) {
+return _st(self["@columnWidths"])._at_put_(columnIndex,_st(_st(_st(self["@elements"])._atColumn_(columnIndex))._select_thenCollect_("notNil","width"))._max());
+}, function($ctx2) {$ctx2.fillBlock({columnIndex:columnIndex},$ctx1)})}));
+return self}, function($ctx1) {$ctx1.fill(self,"computeColumnWidths",{},smalltalk.RTCell)})},
+args: [],
+source: "computeColumnWidths\x0a\x0a\x09columnWidths := Array new: elements columnCount.\x0a\x091 to: elements columnCount do: [ :columnIndex |\x0a\x09\x09columnWidths at: columnIndex put: ((elements atColumn: columnIndex) select: #notNil thenCollect: #width) max\x0a\x09 ].",
+messageSends: ["new:", "columnCount", "to:do:", "at:put:", "max", "select:thenCollect:", "atColumn:"],
+referencedClasses: ["Array"]
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "computeRowHeights",
+category: 'accessing',
+fn: function (){
+var self=this;
+function $Array(){return smalltalk.Array||(typeof Array=="undefined"?nil:Array)}
+return smalltalk.withContext(function($ctx1) { 
+self["@rowHeights"]=_st($Array())._new_(_st(self["@elements"])._rowCount());
+(1)._to_do_(_st(self["@elements"])._rowCount(),(function(rowIndex){
+return smalltalk.withContext(function($ctx2) {
+return _st(self["@rowHeights"])._at_put_(rowIndex,_st(_st(_st(self["@elements"])._atRow_(rowIndex))._select_thenCollect_("notNil","height"))._max());
+}, function($ctx2) {$ctx2.fillBlock({rowIndex:rowIndex},$ctx1)})}));
+return self}, function($ctx1) {$ctx1.fill(self,"computeRowHeights",{},smalltalk.RTCell)})},
+args: [],
+source: "computeRowHeights\x0a\x0a\x09rowHeights := Array new: elements rowCount.\x0a\x091 to: elements rowCount do: [ :rowIndex |\x0a\x09\x09rowHeights at: rowIndex put: ((elements atRow: rowIndex) select: #notNil thenCollect: #height) max\x0a\x09 ].",
+messageSends: ["new:", "rowCount", "to:do:", "at:put:", "max", "select:thenCollect:", "atRow:"],
+referencedClasses: ["Array"]
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "element",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self["@element"];
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"element",{},smalltalk.RTCell)})},
+args: [],
+source: "element\x0a\x09^ element",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "element:",
+category: 'accessing',
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+self["@element"]=anObject;
+return self}, function($ctx1) {$ctx1.fill(self,"element:",{anObject:anObject},smalltalk.RTCell)})},
+args: ["anObject"],
+source: "element: anObject\x0a\x09element := anObject",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "elements:",
+category: 'accessing',
+fn: function (aCollection){
+var self=this;
+var rows,col;
+function $Array(){return smalltalk.Array||(typeof Array=="undefined"?nil:Array)}
+function $RTCellMatrix(){return smalltalk.RTCellMatrix||(typeof RTCellMatrix=="undefined"?nil:RTCellMatrix)}
+return smalltalk.withContext(function($ctx1) { 
+rows=_st(_st(_st(_st(aCollection)._size()).__slash(self["@columns"]))._ceiling())._rounded();
+col=_st($Array())._new_(_st(rows).__star(self["@columns"]));
+(1)._to_do_(_st(aCollection)._size(),(function(i){
+return smalltalk.withContext(function($ctx2) {
+return _st(col)._at_put_(i,_st(aCollection)._at_(i));
+}, function($ctx2) {$ctx2.fillBlock({i:i},$ctx1)})}));
+self["@elements"]=_st($RTCellMatrix())._rows_columns_contents_(rows,self["@columns"],col);
+self._computeColumnWidths();
+self._computeRowHeights();
+return self}, function($ctx1) {$ctx1.fill(self,"elements:",{aCollection:aCollection,rows:rows,col:col},smalltalk.RTCell)})},
+args: ["aCollection"],
+source: "elements: aCollection \x0a\x0a\x09| rows  col |\x0a\x09rows := (aCollection size / columns) ceiling rounded.\x0a\x09col := Array new: rows * columns.\x0a\x091 to: aCollection size do: [ :i | col at: i put: (aCollection at: i)].\x0a\x09elements := RTCellMatrix \x0a\x09\x09\x09\x09\x09\x09rows: rows\x0a\x09\x09\x09\x09\x09\x09columns: columns \x0a\x09\x09\x09\x09\x09\x09contents: col.\x0a\x09self computeColumnWidths.\x0a\x09self computeRowHeights.",
+messageSends: ["rounded", "ceiling", "/", "size", "new:", "*", "to:do:", "at:put:", "at:", "rows:columns:contents:", "computeColumnWidths", "computeRowHeights"],
+referencedClasses: ["Array", "RTCellMatrix"]
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "extent",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(self._width()).__at(self._height());
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"extent",{},smalltalk.RTCell)})},
+args: [],
+source: "extent\x0a\x0a\x09^ self width @ self height",
+messageSends: ["@", "height", "width"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "height",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self._rowHeightAt_(self._row());
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"height",{},smalltalk.RTCell)})},
+args: [],
+source: "height\x0a\x0a\x09^ self rowHeightAt: self row",
+messageSends: ["rowHeightAt:", "row"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "number",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self["@number"];
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"number",{},smalltalk.RTCell)})},
+args: [],
+source: "number\x0a\x09^ number",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "number:",
+category: 'accessing',
+fn: function (anObject){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+self["@number"]=anObject;
+return self}, function($ctx1) {$ctx1.fill(self,"number:",{anObject:anObject},smalltalk.RTCell)})},
+args: ["anObject"],
+source: "number: anObject\x0a\x09number := anObject",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "row",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(_st(_st(self["@number"]).__minus((1)))._quo_(self["@columns"])).__plus((1));
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"row",{},smalltalk.RTCell)})},
+args: [],
+source: "row\x0a\x0a\x09^((number - 1) quo: columns) + 1",
+messageSends: ["+", "quo:", "-"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "rowHeightAt:",
+category: 'accessing',
+fn: function (index){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(self["@rowHeights"])._at_(index);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rowHeightAt:",{index:index},smalltalk.RTCell)})},
+args: ["index"],
+source: "rowHeightAt: index\x0a\x09\x22private\x22\x0a\x0a\x09^ rowHeights at: index",
+messageSends: ["at:"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "width",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self._columnWidthAt_(self._column());
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"width",{},smalltalk.RTCell)})},
+args: [],
+source: "width\x0a\x0a\x09^ self columnWidthAt: self column",
+messageSends: ["columnWidthAt:", "column"],
+referencedClasses: []
+}),
+smalltalk.RTCell);
+
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "elements:columns:",
+category: 'public',
+fn: function (aCollection,anInteger){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $2,$3,$1;
+$2=self._new();
+_st($2)._columns_(anInteger);
+_st($2)._elements_(aCollection);
+$3=_st($2)._yourself();
+$1=$3;
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"elements:columns:",{aCollection:aCollection,anInteger:anInteger},smalltalk.RTCell.klass)})},
+args: ["aCollection", "anInteger"],
+source: "elements: aCollection columns: anInteger \x0a\x09\x0a\x09^ self new columns: anInteger; elements: aCollection; yourself",
+messageSends: ["columns:", "new", "elements:", "yourself"],
+referencedClasses: []
+}),
+smalltalk.RTCell.klass);
+
+
+smalltalk.addClass('RTCellMatrix', smalltalk.RTObject, ['nrows', 'ncols', 'contents'], 'Roassal2-Layouts');
+smalltalk.RTCellMatrix.comment="A ROCellMatrix is xxxxxxxxx.\x0a\x0aInstance Variables\x0a\x09contents:\x09\x09<Object>\x0a\x09ncols:\x09\x09<Object>\x0a\x09nrows:\x09\x09<Object>\x0a\x0acontents\x0a\x09- xxxxx\x0a\x0ancols\x0a\x09- xxxxx\x0a\x0anrows\x0a\x09- xxxxx";
+smalltalk.addMethod(
+smalltalk.method({
+selector: "atColumn:",
+category: 'accessing rows/columns',
+fn: function (column){
+var self=this;
+var p;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+p=_st(self._indexForRow_andColumn_((1),column)).__minus(self["@ncols"]);
+$1=_st((1)._to_(self["@nrows"]))._collect_((function(row){
+return smalltalk.withContext(function($ctx2) {
+p=_st(p).__plus(self["@ncols"]);
+return _st(self["@contents"])._at_(p);
+}, function($ctx2) {$ctx2.fillBlock({row:row},$ctx1)})}));
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"atColumn:",{column:column,p:p},smalltalk.RTCellMatrix)})},
+args: ["column"],
+source: "atColumn: column\x0a\x09| p |\x0a\x09p := (self indexForRow: 1 andColumn: column) - ncols.\x0a\x09^ (1 to: nrows) collect: [ :row | contents at: (p := p+ncols) ]",
+messageSends: ["-", "indexForRow:andColumn:", "collect:", "at:", "+", "to:"],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "atRow:",
+category: 'accessing rows/columns',
+fn: function (row){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1,$2;
+$1=_st(row)._between_and_((1),self["@nrows"]);
+if(! smalltalk.assert($1)){
+self._error_("1st subscript out of range");
+};
+$2=_st(self["@contents"])._copyFrom_to_(_st(_st(_st(row).__minus((1))).__star(self["@ncols"])).__plus((1)),_st(row).__star(self["@ncols"]));
+return $2;
+}, function($ctx1) {$ctx1.fill(self,"atRow:",{row:row},smalltalk.RTCellMatrix)})},
+args: ["row"],
+source: "atRow: row\x0a\x09(row between: 1 and: nrows)\x0a\x09\x09ifFalse: [ self error: '1st subscript out of range' ].\x0a\x09^ contents copyFrom: (row - 1) * ncols + 1 to: row * ncols",
+messageSends: ["ifFalse:", "error:", "between:and:", "copyFrom:to:", "+", "*", "-"],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "columnCount",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self["@ncols"];
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"columnCount",{},smalltalk.RTCellMatrix)})},
+args: [],
+source: "columnCount\x0a\x09^ ncols",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "indexForRow:andColumn:",
+category: 'private',
+fn: function (row,column){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1,$2,$3;
+$1=_st(row)._between_and_((1),self["@nrows"]);
+if(! smalltalk.assert($1)){
+self._error_("1st subscript out of range");
+};
+$2=_st(column)._between_and_((1),self["@ncols"]);
+if(! smalltalk.assert($2)){
+self._error_("2nd subscript out of range");
+};
+$3=_st(_st(_st(row).__minus((1))).__star(self["@ncols"])).__plus(column);
+return $3;
+}, function($ctx1) {$ctx1.fill(self,"indexForRow:andColumn:",{row:row,column:column},smalltalk.RTCellMatrix)})},
+args: ["row", "column"],
+source: "indexForRow: row andColumn: column\x0a\x09(row between: 1 and: nrows)\x0a\x09\x09ifFalse: [self error: '1st subscript out of range'].\x0a\x09(column between: 1 and: ncols)\x0a\x09\x09ifFalse: [self error: '2nd subscript out of range'].\x0a\x09^ (row - 1) * ncols + column",
+messageSends: ["ifFalse:", "error:", "between:and:", "+", "*", "-"],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "rowCount",
+category: 'accessing',
+fn: function (){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self["@nrows"];
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rowCount",{},smalltalk.RTCellMatrix)})},
+args: [],
+source: "rowCount\x0a\x09^ nrows",
+messageSends: [],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "rows:columns:contents:",
+category: 'private',
+fn: function (rows,columns,anArray){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(_st(_st(_st(rows)._isInteger())._and_((function(){
+return smalltalk.withContext(function($ctx2) {
+return _st(rows).__gt_eq((0));
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1)})})))._and_((function(){
+return smalltalk.withContext(function($ctx2) {
+return _st(_st(columns)._isInteger())._and_((function(){
+return smalltalk.withContext(function($ctx3) {
+return _st(columns).__gt_eq((0));
+}, function($ctx3) {$ctx3.fillBlock({},$ctx2)})}));
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1)})})))._and_((function(){
+return smalltalk.withContext(function($ctx2) {
+return _st(_st(rows).__star(columns)).__eq(_st(anArray)._size());
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1)})}));
+if(! smalltalk.assert($1)){
+self._error_("Wrong parameters");
+};
+self["@nrows"]=rows;
+self["@ncols"]=columns;
+self["@contents"]=anArray;
+return self}, function($ctx1) {$ctx1.fill(self,"rows:columns:contents:",{rows:rows,columns:columns,anArray:anArray},smalltalk.RTCellMatrix)})},
+args: ["rows", "columns", "anArray"],
+source: "rows: rows columns: columns contents: anArray\x0a\x09(((rows isInteger and: [rows >= 0]) and: \x0a\x09\x09[columns isInteger and: [columns >= 0]]) and:\x0a\x09\x09\x09[ rows * columns = anArray size ]) ifFalse: [ self error: 'Wrong parameters' ].\x0a\x09nrows := rows.\x0a\x09ncols := columns.\x0a\x09contents := anArray",
+messageSends: ["ifFalse:", "error:", "and:", "=", "size", "*", ">=", "isInteger"],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix);
+
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "rows:columns:contents:",
+category: 'as yet unclassified',
+fn: function (rows,columns,contents){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=_st(self._new())._rows_columns_contents_(rows,columns,contents);
+return $1;
+}, function($ctx1) {$ctx1.fill(self,"rows:columns:contents:",{rows:rows,columns:columns,contents:contents},smalltalk.RTCellMatrix.klass)})},
+args: ["rows", "columns", "contents"],
+source: "rows: rows columns: columns contents: contents\x0a\x09^self new rows: rows columns: columns contents: contents",
+messageSends: ["rows:columns:contents:", "new"],
+referencedClasses: []
+}),
+smalltalk.RTCellMatrix.klass);
+
+
 smalltalk.addClass('RTLayout', smalltalk.RTObject, ['affectedNodes', 'translator', 'eventHandler', 'currentIteraction', 'maxInterations', 'iterationsToSendEvent'], 'Roassal2-Layouts');
 smalltalk.RTLayout.comment="A ROLayout is the superclass of all.\x0a\x0aInstance Variables\x0a\x09affectedNodes:\x09\x09<Object>\x0a\x09currentIteraction:\x09\x09<Object>\x0a\x09eventHandler:\x09\x09<Object>\x0a\x09maxInterations:\x09\x09<Object>\x0a\x09translator:\x09\x09<Object>\x0a\x0aaffectedNodes\x0a\x09- xxxxx\x0a\x0acurrentIteraction\x0a\x09- xxxxx\x0a\x0aeventHandler\x0a\x09- xxxxx\x0a\x0amaxInterations\x0a\x09- xxxxx\x0a\x0atranslator\x0a\x09- xxxxx";
 smalltalk.addMethod(
